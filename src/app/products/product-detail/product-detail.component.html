@@ -1,0 +1,28 @@
+<div *ngIf="product">
+    <h2>{{product.name | uppercase}}</h2>
+
+    <img style="float:right"
+     [src]="product.imageUrl" 
+     *ngIf="product.imageUrl" 
+     width="250" 
+    />
+    
+    <h3>{{product.description}}</h3>
+    <p>Price: {{product.price | currency:'CAD':'symbol-narrow':'.2'}}</p>
+    <p>Fixed price? {{product.fixedPrice}}</p>
+
+    <p>
+      Edit price: <input type="number"
+       [(ngModel)]="product.price"
+       [ngModelOptions]="{updateOn: 'blur'}"
+       [disabled]="product.fixedPrice">
+    </p>
+
+    <p>Discontinued? <input type="checkbox" [(ngModel)]="product.discontinued" />
+    <p>Modified date:
+        {{product.modifiedDate | date}}</p>
+
+    <p>
+      <button (click)="newFavorite(product)">Add to favorites</button>
+    </p>
+</div>
