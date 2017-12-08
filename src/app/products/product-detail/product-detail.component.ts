@@ -6,7 +6,7 @@ import { FavoriteService } from '../../services/favorite.service';
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
-  providers: [FavoriteService],
+  providers: [],
 })
 export class ProductDetailComponent implements OnInit {
 

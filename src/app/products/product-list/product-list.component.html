@@ -2,16 +2,42 @@
   {{ title }}
 </h2>
 
+<div>{{ favorites }} vehicles favorited</div>
 
-<ul class="products">
-  <li *ngFor="let product of products"
+<ng-template #loading>
+  <h2>Loading products...</h2>
+</ng-template>
+
+<ul class="products" *ngIf="products$ | async as products; else loading">
+  <li *ngFor="let product of products | slice:start:end"
    [class.discontinued]="product.discontinued"
    [class.selected]="product === selectedProduct"
+   [title]="product | json"
    (click)="onSelect(product)">
     <span class="name">{{ product.name | uppercase }}</span>
     <span class="description">{{ product.description }}</span>
     <span class="price">{{ product.price | currency:'CAD':'symbol-narrow':'.2' }}</span>
   </li>
 </ul>
+
+
+<div>
+
+  <h3>
+  <button (click)="prevPage()"
+   [disabled]="start == 0">
+    Prev page
+  </button>
+
+  Page {{ currentPage}} 
+
+  <button (click)="nextPage()"
+   [disabled]="(products$ | async)?.length <= end">
+      Next page
+    </button>
+
+  </h3>
+</div>
+
 
 <app-product-detail [product]="selectedProduct"></app-product-detail>
