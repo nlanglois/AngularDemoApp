@@ -20,6 +20,20 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+
+  getProductById(id: number): Observable<Product> {
+    return this
+            .getProducts()
+            .pipe(
+              flatMap(product => product),
+              first(product => product.id == id),
+              catchError(this.handleError),
+            );
+  }
+
+
+
+
   getProducts(): Observable<Product[]> {
 
     if (!this.products$) {

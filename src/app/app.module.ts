@@ -11,6 +11,7 @@ import { LoginComponent } from './common/login.component';
 import { ContactComponent } from './common/contact.component';
 import { ErrorComponent } from './common/error.component';
 import { AdminComponent } from './common/admin.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -27,9 +28,9 @@ import { AdminComponent } from './common/admin.component';
     FormsModule,
     HttpClientModule,
     ProductsModule,
+    AppRoutingModule,
   ],
   providers: [
-
   ],
   bootstrap: [
     AppComponent,

@@ -4,12 +4,12 @@ import { ProductService } from '../../services/product.service';
 import { FavoriteService } from '../../services/favorite.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductService, FavoriteService],
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
@@ -55,9 +55,16 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
 
 
+  /**
+   * What happens when I click on a product
+   * @param product
+   */
   onSelect(product: Product): void {
     this.selectedProduct = product;
+    this.router.navigateByUrl('/products/' + product.id);
   }
+
+
 
   get favorites(): number {
     return this.favoriteService.getNumberOfFavorites();
@@ -67,7 +74,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private favoriteService: FavoriteService) {
+    private favoriteService: FavoriteService,
+    private router: Router) {
   }
 
 

@@ -15,9 +15,10 @@ const routes: Routes = [
   { path: '**', component: ErrorComponent },
 ];
 
+
 @NgModule({
   imports: [
-      RouterModule.forChild(routes),
+      RouterModule.forRoot(routes),
     ],
   exports: [
       RouterModule,

@@ -1,4 +1,10 @@
-<div *ngIf="product">
+<ng-template #noProduct>
+    <h3>No product to display</h3>
+</ng-template>
+
+
+
+<div *ngIf="product; else noProduct">
     <h2>{{product.name | uppercase}}</h2>
 
     <img style="float:right"
